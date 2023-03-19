@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const isDev = process.env.NODE_ENV === "development";
 
-module.exports = nextConfig
+const baseConfig = {
+  reactStrictMode: true,
+  images: {
+    unoptimized: true,
+  },
+};
+
+const nextConfig = isDev ? baseConfig : { ...baseConfig, output: "exports" };
+
+module.exports = nextConfig;

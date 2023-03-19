@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  app-dev:
+    build:
+      context: .
+      target: dev
+    container_name: static-app-dev
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+  app-prod:
+    build:
+      context: .
+      target: prod
+    container_name: static-app-prod
+    restart: always
+    ports:
+      - "8080:8080"

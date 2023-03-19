@@ -36,3 +36,34 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+```bash
+podman run \
+    --name test \
+    -p 3000:3000 \
+    -v ./:/usr/src/app \
+    -v /usr/src/app/node_modules \
+    -v /usr/src/app/.next \
+    -d \
+    test
+
+- maybe just use compose for volumes
+
+podman build --target dev -t test .
+podman run -p 3000:3000 -d <image name>
+
+version: '3.4'
+services:
+  webapp-prod:
+    build:
+      context: ./dir
+      dockerfile: Dockerfile
+      target: prod
+  webapp-dev:
+    build:
+      context: ./dir
+      dockerfile: Dockerfile
+      target: dev
+
+podman-compose down && podman container prune -f && podman image prune -af
+```
