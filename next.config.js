@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const isDev = process.env.NODE_ENV === "development";
+const isStatic = process.env.BUILD_STAGE == "static";
 
 const baseConfig = {
   reactStrictMode: true,
@@ -8,6 +8,6 @@ const baseConfig = {
   },
 };
 
-const nextConfig = isDev ? baseConfig : { ...baseConfig, output: "exports" };
+const nextConfig = isStatic ? { ...baseConfig, output: "export" } : baseConfig;
 
 module.exports = nextConfig;

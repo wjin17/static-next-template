@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
@@ -10,19 +9,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { state, action } = useSomething();
-  const [greeting, setGreeting] = useState("");
-
-  useEffect(() => {
-    async function fetchGreeting() {
-      const res = await fetch("/api/hello");
-      const { greeting } = await res.json();
-      setGreeting(greeting);
-    }
-    fetchGreeting();
-  });
-
-  //console.log("hello", stage, isContainer);
-
   return (
     <>
       <Head>
@@ -34,11 +20,11 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            {greeting}&nbsp;
+            Get started by editing (you should work now)&nbsp;
             <code className={styles.code}>src/pages/index.tsx</code>
           </p>
-          <button onClick={() => action("new!")}>{state}</button>
-          <Link href={"/ugh"}>ugh</Link>
+          <button onClick={() => action("cries!")}>{state}</button>
+          <Link href={"/"}>home</Link>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
